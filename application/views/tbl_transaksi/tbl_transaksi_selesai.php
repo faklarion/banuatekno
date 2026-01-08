@@ -119,8 +119,8 @@
                         <?php 
                         echo anchor(site_url('tbl_transaksi/read_transaksi/'.$tbl_transaksi->id_transaksi),'<i class="fa fa-print" aria-hidden="true"></i>','class="btn btn-danger btn-sm" target="_blank"'); 
                         echo '  '; 
-                        //echo anchor(site_url('tbl_transaksi/update/'.$tbl_transaksi->id_transaksi),'<i class="fa fa-pencil-square-o" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
-                        //echo '  '; 
+                        echo anchor(site_url('tbl_transaksi/email/'.$tbl_transaksi->id_transaksi),'<i class="fa fa-envelope" aria-hidden="true"></i>','class="btn btn-danger btn-sm"'); 
+                        echo '  '; 
                         if($tbl_transaksi->status == 1 ) {
                         echo '<a href="#" class="btn btn-success btn-sm" data-toggle="modal" data-target="#modalSelesai'.$tbl_transaksi->id_transaksi.'" role="button">
 							<i class="fa fa-check"></i>

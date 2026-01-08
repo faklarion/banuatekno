@@ -330,6 +330,43 @@ class Tbl_transaksi extends CI_Controller
 		}
 		redirect('tbl_transaksi/create');
 	}
+
+    public function email($id)
+    {
+
+        $row = $this->Tbl_transaksi_model->get_by_id($id);
+
+        $config = array(
+            'protocol'  => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'faisal.modus@gmail.com',
+            'smtp_pass' => 'qeqt xllk klvy adgk',
+            'charset'   => 'utf-8',
+            'mailtype'  => 'html',
+            'newline'   => "\r\n",
+            'crlf'      => "\r\n"
+        );
+
+        $this->load->library('email', $config);
+
+        $this->email->from('faisal.modus@gmail.com', 'Banua Tekno');
+        $this->email->to($row->email_customer);
+        $this->email->subject('Notifikasi Servis Selesai Banua Tekno');
+        $this->email->message('Assalamualaikum '.$row->nama_customer.',<br><br>
+        Servis HP Anda dengan tipe '.$row->tipe_hp.' pada tanggal '.tgl_indo($row->tanggal_transaksi).' telah selesai.<br>
+        Silahkan datang ke tempat kami untuk pengambilan perangkat Anda.<br><br>');
+
+        if ($this->email->send()) {
+            $this->session->set_flashdata('message', 'Email Notifikasi Berhasil Dikirim');
+            redirect(site_url('tbl_transaksi/transaksi'));
+        } else {
+            echo $this->email->print_debugger();
+            $this->session->set_flashdata('message', 'Email Notifikasi Gagal Dikirim');
+            redirect(site_url('tbl_transaksi/transaksi'));
+        }
+    }
+
 }
 
 /* End of file Tbl_transaksi.php */
