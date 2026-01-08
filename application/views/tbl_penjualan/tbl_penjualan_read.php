@@ -38,6 +38,13 @@
 				</div>
 
 				<table class="table table-borderless mt-4">
+
+					<tr>
+						<th>Kasir</th>
+						<td>: <?php echo $this->session->userdata('full_name'); ?></td>
+					</tr>
+					
+
 					<tr>
 						<th>Nama Customer</th>
 						<td>: <?php echo ($row->nama_customer); ?></td>
