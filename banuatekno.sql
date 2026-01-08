@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.2.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Waktu pembuatan: 22 Jun 2025 pada 14.25
--- Versi server: 10.4.18-MariaDB
--- Versi PHP: 8.0.3
+-- Host: localhost
+-- Waktu pembuatan: 08 Jan 2026 pada 07.35
+-- Versi server: 8.0.30
+-- Versi PHP: 7.4.33
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `banuatekno`
+-- Basis data: `banuatekno`
 --
 
 -- --------------------------------------------------------
@@ -28,13 +28,13 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `tbl_customer` (
-  `id_customer` int(11) NOT NULL,
+  `id_customer` int NOT NULL,
   `nama_customer` varchar(100) NOT NULL,
   `alamat_customer` text NOT NULL,
   `nohp_customer` varchar(20) NOT NULL,
   `email_customer` varchar(100) NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `tbl_customer`
@@ -43,7 +43,7 @@ CREATE TABLE `tbl_customer` (
 INSERT INTO `tbl_customer` (`id_customer`, `nama_customer`, `alamat_customer`, `nohp_customer`, `email_customer`, `keterangan`) VALUES
 (1, 'Tomy Chandra', 'Jl. Brigjend Hasan Basri, Kayutangi 1', '083866031895', '-', 'Beli Sparepart'),
 (2, 'Andrianto', 'Jl. Ray 17, Rt.07, Beringin, Kec.Alalak, Kab.Barito Kuala', '083866031895', 'cemot56@gmail.com', 'Service'),
-(3, 'Arliyanto', 'Jl. H. M. Yunus, Sungai Rasau Rt. 03, Kec. Cerbon, Kab. Barito Kuala', '082158032790', 'exxzoss@gmail.com', 'Service'),
+(3, 'Arliyanto', 'Jl. H. M. Yunus, Sungai Rasau Rt. 03, Kec. Cerbon, Kab. Barito Kuala', '082158032790', 'faisal.jynerso@gmail.com', 'Service'),
 (4, 'Arhamni', 'Jl.Perdagangan', '085869407314', '-', 'Beli Sparepart');
 
 -- --------------------------------------------------------
@@ -53,13 +53,13 @@ INSERT INTO `tbl_customer` (`id_customer`, `nama_customer`, `alamat_customer`, `
 --
 
 CREATE TABLE `tbl_detail_penjualan` (
-  `id_detail_transaksi` int(11) NOT NULL,
-  `id_penjualan` int(11) NOT NULL,
-  `id_sparepart` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
+  `id_detail_transaksi` int NOT NULL,
+  `id_penjualan` int NOT NULL,
+  `id_sparepart` int NOT NULL,
+  `qty` int NOT NULL,
+  `harga` int NOT NULL,
   `tanggal` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `tbl_detail_penjualan`
@@ -95,13 +95,13 @@ DELIMITER ;
 --
 
 CREATE TABLE `tbl_detail_transaksi` (
-  `id_detail_transaksi` int(11) NOT NULL,
-  `id_transaksi` int(11) NOT NULL,
-  `id_jasa` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
+  `id_detail_transaksi` int NOT NULL,
+  `id_transaksi` int NOT NULL,
+  `id_jasa` int NOT NULL,
+  `qty` int NOT NULL,
+  `harga` int NOT NULL,
   `tanggal` date DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `tbl_detail_transaksi`
@@ -111,7 +111,9 @@ INSERT INTO `tbl_detail_transaksi` (`id_detail_transaksi`, `id_transaksi`, `id_j
 (8, 14, 1, 1, 40000, '2025-06-22'),
 (9, 15, 9, 1, 20000, '2025-06-22'),
 (10, 15, 8, 1, 20000, '2025-06-22'),
-(11, 16, 11, 1, 80000, '2025-06-22');
+(11, 16, 11, 1, 80000, '2025-06-22'),
+(13, 18, 10, 1, 20000, '2025-07-06'),
+(14, 18, 2, 1, 20000, '2025-07-06');
 
 -- --------------------------------------------------------
 
@@ -120,9 +122,9 @@ INSERT INTO `tbl_detail_transaksi` (`id_detail_transaksi`, `id_transaksi`, `id_j
 --
 
 CREATE TABLE `tbl_hak_akses` (
-  `id` int(11) NOT NULL,
-  `id_user_level` int(11) NOT NULL,
-  `id_menu` int(11) NOT NULL
+  `id` int NOT NULL,
+  `id_user_level` int NOT NULL,
+  `id_menu` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -146,11 +148,11 @@ INSERT INTO `tbl_hak_akses` (`id`, `id_user_level`, `id_menu`) VALUES
 --
 
 CREATE TABLE `tbl_jasa` (
-  `id_jasa` int(11) NOT NULL,
+  `id_jasa` int NOT NULL,
   `nama_jasa` varchar(100) NOT NULL,
-  `harga_jasa` int(11) NOT NULL,
+  `harga_jasa` int NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `tbl_jasa`
@@ -176,11 +178,11 @@ INSERT INTO `tbl_jasa` (`id_jasa`, `nama_jasa`, `harga_jasa`, `keterangan`) VALU
 --
 
 CREATE TABLE `tbl_menu` (
-  `id_menu` int(11) NOT NULL,
+  `id_menu` int NOT NULL,
   `title` varchar(50) NOT NULL,
   `url` varchar(30) NOT NULL,
   `icon` varchar(30) NOT NULL,
-  `is_main_menu` int(11) NOT NULL,
+  `is_main_menu` int NOT NULL,
   `is_aktif` enum('y','n') NOT NULL COMMENT 'y=yes,n=no'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -209,13 +211,13 @@ INSERT INTO `tbl_menu` (`id_menu`, `title`, `url`, `icon`, `is_main_menu`, `is_a
 --
 
 CREATE TABLE `tbl_pembelian` (
-  `id_pembelian` int(11) NOT NULL,
-  `id_sparepart` int(11) NOT NULL,
-  `harga` int(11) NOT NULL,
-  `jumlah` int(11) NOT NULL,
+  `id_pembelian` int NOT NULL,
+  `id_sparepart` int NOT NULL,
+  `harga` int NOT NULL,
+  `jumlah` int NOT NULL,
   `supplier` varchar(100) NOT NULL,
   `tanggal_pembelian` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `tbl_pembelian`
@@ -273,11 +275,11 @@ DELIMITER ;
 --
 
 CREATE TABLE `tbl_penjualan` (
-  `id_penjualan` int(11) NOT NULL,
+  `id_penjualan` int NOT NULL,
   `tanggal_penjualan` date NOT NULL,
-  `id_customer` int(11) NOT NULL,
+  `id_customer` int NOT NULL,
   `jenis_pembayaran` varchar(20) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `tbl_penjualan`
@@ -293,7 +295,7 @@ INSERT INTO `tbl_penjualan` (`id_penjualan`, `tanggal_penjualan`, `id_customer`,
 --
 
 CREATE TABLE `tbl_setting` (
-  `id_setting` int(11) NOT NULL,
+  `id_setting` int NOT NULL,
   `nama_setting` varchar(50) NOT NULL,
   `value` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -312,12 +314,12 @@ INSERT INTO `tbl_setting` (`id_setting`, `nama_setting`, `value`) VALUES
 --
 
 CREATE TABLE `tbl_sparepart` (
-  `id_sparepart` int(11) NOT NULL,
+  `id_sparepart` int NOT NULL,
   `nama_sparepart` varchar(150) NOT NULL,
-  `stok` int(11) NOT NULL DEFAULT 0,
+  `stok` int NOT NULL DEFAULT '0',
   `keterangan` text NOT NULL,
-  `harga_jual` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `harga_jual` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `tbl_sparepart`
@@ -332,7 +334,8 @@ INSERT INTO `tbl_sparepart` (`id_sparepart`, `nama_sparepart`, `stok`, `keterang
 (7, 'Port Charger Infinix Note 30 Pro', 4, 'Baru', 15000),
 (8, 'LCD POCO C65', 3, 'Baru', 150000),
 (9, 'Lem LCD 15ml', 12, 'Baru', 15000),
-(10, 'LCD Poco X3 GT', 4, 'Baru', 150000);
+(10, 'LCD Poco X3 GT', 4, 'Baru', 150000),
+(12, 'LCD IP 11', 0, 'Baru', 150000);
 
 -- --------------------------------------------------------
 
@@ -341,13 +344,13 @@ INSERT INTO `tbl_sparepart` (`id_sparepart`, `nama_sparepart`, `stok`, `keterang
 --
 
 CREATE TABLE `tbl_teknisi` (
-  `id_teknisi` int(11) NOT NULL,
+  `id_teknisi` int NOT NULL,
   `nama_teknisi` varchar(100) NOT NULL,
   `alamat_teknisi` text NOT NULL,
   `nohp_teknisi` varchar(20) NOT NULL,
   `email_teknisi` varchar(100) NOT NULL,
   `keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `tbl_teknisi`
@@ -367,15 +370,15 @@ INSERT INTO `tbl_teknisi` (`id_teknisi`, `nama_teknisi`, `alamat_teknisi`, `nohp
 --
 
 CREATE TABLE `tbl_transaksi` (
-  `id_transaksi` int(11) NOT NULL,
+  `id_transaksi` int NOT NULL,
   `tanggal_transaksi` date NOT NULL,
-  `id_customer` int(11) NOT NULL,
-  `id_teknisi` int(11) NOT NULL,
-  `status` int(11) NOT NULL,
+  `id_customer` int NOT NULL,
+  `id_teknisi` int NOT NULL,
+  `status` int NOT NULL,
   `tanggal_selesai` date DEFAULT NULL,
   `jenis_pembayaran` varchar(20) DEFAULT NULL,
   `tipe_hp` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data untuk tabel `tbl_transaksi`
@@ -384,7 +387,8 @@ CREATE TABLE `tbl_transaksi` (
 INSERT INTO `tbl_transaksi` (`id_transaksi`, `tanggal_transaksi`, `id_customer`, `id_teknisi`, `status`, `tanggal_selesai`, `jenis_pembayaran`, `tipe_hp`) VALUES
 (14, '2025-05-12', 4, 3, 1, '2025-05-13', NULL, 'Poco C65'),
 (15, '2025-05-14', 3, 2, 2, '2025-05-15', 'QRIS/Transfer', 'Tecno'),
-(16, '2025-05-22', 3, 4, 1, '2025-05-23', NULL, 'Tecno');
+(16, '2025-05-22', 3, 4, 1, '2025-05-23', NULL, 'Tecno'),
+(18, '2025-07-06', 1, 5, 1, '2025-07-08', NULL, 'Redmi 12');
 
 -- --------------------------------------------------------
 
@@ -393,12 +397,12 @@ INSERT INTO `tbl_transaksi` (`id_transaksi`, `tanggal_transaksi`, `id_customer`,
 --
 
 CREATE TABLE `tbl_user` (
-  `id_users` int(11) NOT NULL,
+  `id_users` int NOT NULL,
   `full_name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `images` text NOT NULL,
-  `id_user_level` int(11) NOT NULL,
+  `id_user_level` int NOT NULL,
   `is_aktif` enum('y','n') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -407,7 +411,8 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id_users`, `full_name`, `email`, `password`, `images`, `id_user_level`, `is_aktif`) VALUES
-(1, 'Dimas', 'admin@gmail.com', '$2y$04$Wbyfv4xwihb..POfhxY5Y.jHOJqEFIG3dLfBYwAmnOACpH0EWCCdq', 'atomix_user31.png', 1, 'y');
+(1, 'Dimas', 'admin@gmail.com', '$2y$04$Wbyfv4xwihb..POfhxY5Y.jHOJqEFIG3dLfBYwAmnOACpH0EWCCdq', 'atomix_user31.png', 1, 'y'),
+(2, 'Faisal', 'kasir@gmail.com', '$2y$04$Wbyfv4xwihb..POfhxY5Y.jHOJqEFIG3dLfBYwAmnOACpH0EWCCdq', 'atomix_user31.png', 2, 'y');
 
 -- --------------------------------------------------------
 
@@ -416,7 +421,7 @@ INSERT INTO `tbl_user` (`id_users`, `full_name`, `email`, `password`, `images`, 
 --
 
 CREATE TABLE `tbl_user_level` (
-  `id_user_level` int(11) NOT NULL,
+  `id_user_level` int NOT NULL,
   `nama_level` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -425,83 +430,12 @@ CREATE TABLE `tbl_user_level` (
 --
 
 INSERT INTO `tbl_user_level` (`id_user_level`, `nama_level`) VALUES
-(1, 'Admin');
+(1, 'Admin'),
+(2, 'Kasir');
 
 --
--- Indexes for dumped tables
+-- Indeks untuk tabel yang dibuang
 --
-
---
--- Indeks untuk tabel `tbl_customer`
---
-ALTER TABLE `tbl_customer`
-  ADD PRIMARY KEY (`id_customer`);
-
---
--- Indeks untuk tabel `tbl_detail_penjualan`
---
-ALTER TABLE `tbl_detail_penjualan`
-  ADD PRIMARY KEY (`id_detail_transaksi`);
-
---
--- Indeks untuk tabel `tbl_detail_transaksi`
---
-ALTER TABLE `tbl_detail_transaksi`
-  ADD PRIMARY KEY (`id_detail_transaksi`);
-
---
--- Indeks untuk tabel `tbl_hak_akses`
---
-ALTER TABLE `tbl_hak_akses`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indeks untuk tabel `tbl_jasa`
---
-ALTER TABLE `tbl_jasa`
-  ADD PRIMARY KEY (`id_jasa`);
-
---
--- Indeks untuk tabel `tbl_menu`
---
-ALTER TABLE `tbl_menu`
-  ADD PRIMARY KEY (`id_menu`);
-
---
--- Indeks untuk tabel `tbl_pembelian`
---
-ALTER TABLE `tbl_pembelian`
-  ADD PRIMARY KEY (`id_pembelian`);
-
---
--- Indeks untuk tabel `tbl_penjualan`
---
-ALTER TABLE `tbl_penjualan`
-  ADD PRIMARY KEY (`id_penjualan`);
-
---
--- Indeks untuk tabel `tbl_setting`
---
-ALTER TABLE `tbl_setting`
-  ADD PRIMARY KEY (`id_setting`);
-
---
--- Indeks untuk tabel `tbl_sparepart`
---
-ALTER TABLE `tbl_sparepart`
-  ADD PRIMARY KEY (`id_sparepart`);
-
---
--- Indeks untuk tabel `tbl_teknisi`
---
-ALTER TABLE `tbl_teknisi`
-  ADD PRIMARY KEY (`id_teknisi`);
-
---
--- Indeks untuk tabel `tbl_transaksi`
---
-ALTER TABLE `tbl_transaksi`
-  ADD PRIMARY KEY (`id_transaksi`);
 
 --
 -- Indeks untuk tabel `tbl_user`
@@ -514,64 +448,6 @@ ALTER TABLE `tbl_user`
 --
 ALTER TABLE `tbl_user_level`
   ADD PRIMARY KEY (`id_user_level`);
-
---
--- AUTO_INCREMENT untuk tabel yang dibuang
---
-
---
--- AUTO_INCREMENT untuk tabel `tbl_customer`
---
-ALTER TABLE `tbl_customer`
-  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_detail_penjualan`
---
-ALTER TABLE `tbl_detail_penjualan`
-  MODIFY `id_detail_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_detail_transaksi`
---
-ALTER TABLE `tbl_detail_transaksi`
-  MODIFY `id_detail_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_jasa`
---
-ALTER TABLE `tbl_jasa`
-  MODIFY `id_jasa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_pembelian`
---
-ALTER TABLE `tbl_pembelian`
-  MODIFY `id_pembelian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_penjualan`
---
-ALTER TABLE `tbl_penjualan`
-  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_sparepart`
---
-ALTER TABLE `tbl_sparepart`
-  MODIFY `id_sparepart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_teknisi`
---
-ALTER TABLE `tbl_teknisi`
-  MODIFY `id_teknisi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT untuk tabel `tbl_transaksi`
---
-ALTER TABLE `tbl_transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
